@@ -1,0 +1,134 @@
+<%- include('partials/header'); -%>
+
+
+<div class="product-page" style='background-image: url("../images/productimages/<%= productName %>-design.png");'>
+
+  <a class='back-arrow' href="/store#<%=productName%>">
+    <img id='back-arrow' src="images/left-arrow.svg">
+    <p>go back</p>
+  </a>
+
+  <div class="product-imgs">
+
+    <div class="selected-img">
+      <img id='active-img' src="images/productimages/<%= productName %>.png" alt="<%= productName %>">
+    </div>
+
+    <div class="alt-imgs">
+
+      <% if (productType === 'hoodie') { %>
+        <img id='alt1' src="images/productimages/<%= productName %>.png" alt="<%= productName %>">
+        <img id='alt3' src="images/productimages/<%= productName %>-back.png" alt="<%= productName %>">
+        <img id='alt2' src="images/productimages/<%= productName %>-design.png" alt="<%= productName %>">
+      <%  }  else { %>
+        <img id='alt1' src="images/productimages/<%= productName %>.png" alt="<%= productName %>"> %>
+        <img id='alt2' src="images/productimages/<%= productName %>-design.png" alt="<%= productName %>">
+      <%  }; %>
+
+    </div>
+
+  </div>
+
+  <div class="product-details-border">
+    <!-- style='background-image: url("../images/productimages/<%= productName %>-design.png");'> -->
+    <form class="product-details" method="post">
+
+      <!-- </form>action="/add" method="post"> -->
+      <h4><%= productName %></h4>
+      <input type="hidden" name="name" value="<%= productName %>">
+      <ul class='product-details-list'>
+        <% productDescriptions.forEach( (description, idx)=> { %>
+        <li><%= description %></li>
+        <% }); %>
+        <%# <li>Free Delivery</li> %>
+      </ul>
+
+      <div class="price-display">
+        <a id='free-delivery-link' href="/about#delivery-snap">Free Worldwide Delivery</a>
+        <% if (productSalePrice !== undefined) { %>
+          <p style="text-decoration: line-through;">£<%= productPrice %></p>
+          <p id='price'> £ <%= productSalePrice %> </p>
+        <% } else { %>
+          <p id='price'> £ <%= productPrice %> </p>
+        <% } %>
+      </div>
+
+      <div class="size-selectors" style='margin-bottom: 0'>
+
+        <div class="size-selection">
+          <input type="radio" id='xsmall' name="size" value="XS">
+          <label for="xsmall">XS</label>
+        </div>
+        <div class="size-selection">
+          <input type="radio" id='small' name="size" value="S">
+          <label for="small">S</label>
+        </div>
+        <div class="size-selection">
+          <input type="radio" id='medium' name="size" value="M">
+          <label for="medium">M</label>
+        </div>
+
+      </div>
+
+      <div class="size-selectors" style='margin-top: 0'>
+
+        <div class="size-selection">
+          <input type="radio" id='large' name="size" value="L">
+          <label for="large">L</label>
+        </div>
+        <div class="size-selection">
+          <input type="radio" id='xlarge' name="size" value="XL">
+          <label for="xlarge">XL</label>
+        </div>
+        <div class="size-selection">
+          <input type="radio" id='xxlarge' name="size" value="XXL">
+          <label for="xxlarge">XXL</label>
+        </div>
+
+    </div>
+
+    <a id='size-guide-link' href="/about#size-guide-snap" style='color: black;'>Size Guide</a>
+
+    <div class="payments-accepted">
+      <%- include('partials/paymentsaccepted'); -%>
+    </div>
+
+
+      <div class="add-to-cart-container">
+        <div class="qty-selector">
+          <!-- <label for="quantity">QTY:</label> -->
+          <input type="number" id="qty" name="qty" min="1" value="1">
+        </div>
+
+        <div class="purchase-option-btns">
+
+        <% if (soldOut !== true) { %>
+            <div class="checkout-btn">
+              <input class='AddToCart' formaction='/add' type="submit" value="Add To Cart" />
+            </div>
+
+            <div class="buy-now-btn">
+              <input class="BuyNow" formaction="/buynow" type="submit" value="BUY NOW">
+            </div>
+        <% } else { %>
+          <div class="checkout-btn" style="margin-top: 1.5%; cursor: not-allowed;">
+            <input class='AddToCart' type="submit" value="SOLD OUT" disabled='disabled'>
+          </div>
+
+        <% } %>
+        </div>
+
+      </div>
+
+
+    </form>
+  </div>
+
+
+</div>
+
+<div class="cart-alert" role="alert"" style='display: <%= displayType %>; background-color: <%= alertColor %>'>
+  <p><%= cartMessage %></p>
+</div>
+
+<%- include('partials/footer'); -%>

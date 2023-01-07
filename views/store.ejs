@@ -1,0 +1,66 @@
+<%- include('partials/header'); -%>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<div class="logo-container" style="z-index: -5">
+  <img class="rotate" src="images/flowers-both.png">
+</div>
+
+<%- include('partials/product-selector'); -%>
+
+
+<div class="products-container">
+
+
+  <% products.forEach( (product, idx)=> { %>
+
+    <% idx = (idx+1)%2 ;%>
+
+    <div class="product" onclick="location.href = '<%=product.name%>';">
+      <div class="product-border">
+        <div class="product-img">
+          <img id="<%=product.name%>" src="images/productimages/<%=product.name%>.png" alt="<%= product.name %>">
+          <% if (product.soldOut === true) { %>
+          <div class='sold-out'>SOLD OUT</div>
+          <% } %>
+        </div>
+
+        <% if (product.soldOut === true) { %>
+
+        <div class="product-desc" style='margin-top: -6rem;'>
+          <h4 class='product-title'><%=product.name%></h4>
+          <p style="text-decoration: line-through;">£<%= product.price %> </p>
+        </div>
+
+        <% } else { %>
+
+        <% if (product.salePrice !== undefined) { %>
+        <div class="product-desc">
+          <h4 class='product-title'><%=product.name%></h4>
+          <div class="sale-price">
+            <p style="text-decoration: line-through;">£<%= product.price %></p>
+            <p>£<%= product.salePrice %></p>
+          </div>
+        </div>
+        <% } else {%>
+        <div class="product-desc">
+          <h4 class='product-title'><%=product.name%></h4>
+          <p>£<%= product.price %></p>
+        </div>
+        <% } %>
+
+        <% } %>
+      </div>
+    </div>
+
+    <% if (idx === 0) { %>
+    <br>
+    <% } %>
+
+  <% }); %>
+
+</div>
+
+
+
+<%- include('partials/footer'); -%>

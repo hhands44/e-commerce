@@ -1,0 +1,40 @@
+{
+  "products" : [
+    {
+      "id" : 1,
+      "name" : "gon",
+      "price": 2500,
+      "imgName": "gon.png"
+    },
+    {
+      "id" : 2,
+      "name" : "todoroki",
+      "price": 2500,
+      "imgName": "todoroki.png"
+    },
+    {
+      "id" : 3,
+      "name" : "killua",
+      "price": 2500,
+      "imgName": "killua.png"
+    },
+    {
+      "id" : 4,
+      "name" : "kakashi",
+      "price": 2500,
+      "imgName": "kakashi.png"
+    },
+    {
+      "id" : 5,
+      "name" : "bakugo",
+      "price": 2500,
+      "imgName": "bakugo.png"
+    },
+    {
+      "id" : 6,
+      "name" : "sasuke",
+      "price": 2500,
+      "imgName": "sasuke.png"
+    }
+  ]
+}
